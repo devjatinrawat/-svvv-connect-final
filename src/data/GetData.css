@@ -1,0 +1,107 @@
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFF;
+  }
+  .post-container {
+    max-width: 1030px;
+    margin: 0 auto;
+  }
+  .main-heading {
+    text-align: center;
+    margin: 20px 0;
+    color: #FFF;
+    font-size: 40px;
+  }
+  .posts {
+    display: flex;
+    width : 100%;
+    flex-wrap: wrap;
+
+  }
+  .post{
+      position: relative;
+      width: 300px;
+      height: 200px;
+      cursor: pointer;
+      border-radius: 16px;
+      box-shadow: 0 0 13px 0px rgba(0,0,0,.3);
+      transition: .5s;
+      overflow: hidden;
+      margin: .85rem;
+  }
+  .post:hover{
+      height: 397px;
+  }
+  
+  .post img{
+      width: 100%;
+      border-radius: 16px;
+      transition: .5s;
+  }
+  .post:hover img{
+      border-radius: 16px 16px 0 0;
+  }
+  
+  .post .post-body{
+      padding: .5rem .85rem 1rem;
+ 
+  }
+  
+  .post .post-body h2{
+      margin: .5rem 0;
+      font-size: .85rem;
+      color: crimson;
+      letter-spacing: 3px;
+      font-weight : bold;
+  }
+  
+  .post .post-body p{
+      text-align: justify;
+      font-size: .9rem;
+      line-height: 25px;
+      margin : 0;
+  }
+  
+  .post .post-body div{
+      text-align: right;
+      width: 100%;
+  }
+  
+  .post .post-body div a{
+      position: relative;
+      text-decoration: none;
+      color: #526ffd;
+      padding: .5rem;
+      text-align: center;
+      z-index: 999;
+      font-size: .85rem;
+  }
+  
+  .post .post-body div a::before{
+      position: absolute;
+      content: '';
+      width: 13px;
+      height: 13px;
+      background: #526ffd;
+      border-radius: 300px;
+      left: -13px;
+      top: 3px;
+      z-index: -1;
+      transition: .3s;
+  }
+  
+  .post .post-body div a:hover{
+      color: #fff;
+  }
+  
+  .post .post-body div a:hover::before{
+      width: 100%;
+      height: 88%;
+      left: 0;
+  }
