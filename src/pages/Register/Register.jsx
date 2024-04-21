@@ -29,7 +29,7 @@ const Register = () => {
           lastName: lname,
         });
       }
-      toast.success("User Registered Successfully!!", {
+      toast.success("User Registered Successfully!! 😃", {
         position: "top-center",
       });
       // Redirect to login page after registration
@@ -38,7 +38,7 @@ const Register = () => {
       }, 6000);
     } catch (error) {
       console.log(error.message);
-      toast.success(error.message, {
+      toast.warn(error.message, {
         position: "bottom-center",
       });
     }
