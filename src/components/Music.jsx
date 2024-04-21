@@ -5,7 +5,7 @@ import useSound from 'use-sound';
 import music from '../assets/sunnyday.mp3';
 
 const Music = ({ isPlaying }) => {
-  const [play, { pause }] = useSound(music, { loop: true, volume: 0.004});
+  const [play, { pause }] = useSound(music, { loop: true, volume: 0.0333});
 
   useEffect(() => {
     if (isPlaying) {
