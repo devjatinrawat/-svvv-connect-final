@@ -12,7 +12,7 @@ const CTA = () => {
     <>
     <section className='w-full  py-24 p-4 items-center'>
         <div className='md:max-w-[1100px] m-auto grid md:grid-cols-2 gap-8 max-w-[400px]'>
-            <img src={cta} alt="hero" className='w-[500px] mx-auto'/>
+            <img src={cta} alt="hero" className='w-[500px] mx-auto animate-pulse'/>
             <div className='flex flex-col justify-start gap-4'>
                 <div>
                 <h1 className='md:leading-[42px] py-8 md:text-3xl text-lg font-semibold'>

@@ -1,12 +1,91 @@
 import final_logo from "../../assets/final_logo.png";
 import Background from "../../components/BackgroundLightLines";
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { auth } from "../../components/firebase.js";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer , Bounce , toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { signInWithPopup, GoogleAuthProvider  } from "firebase/auth";
+
 
 export default function Login() {
-  const { loginWithRedirect } = useAuth0();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+
+   
+    e.preventDefault();
+    try {
+      // Sign in with email and password
+      await signInWithEmailAndPassword(auth, email, password);
+      toast('😊🚀 Wow so easy!', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+      // Redirect to homepage after successful login
+      setTimeout(() => {
+        navigate("/profile");
+      }, 5000);
+      setIsLoggedIn(true);
+    } catch (error) {
+      console.log(error.message);
+      toast.error(
+        error.message +
+          "either password dont exist or entering without email and password",
+        {
+          position: "bottom-center",
+        }
+      );
+      setIsLoggedIn(false);
+    }
+  };
+
+  // Function to handle Google sign-in
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        setIsLoggedIn(true);
+        // Redirect to homepage after successful login
+        setTimeout(() => {
+          navigate("/profile");
+        });
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        setIsLoggedIn(false);
+      });
+
+  };
+
+
   return (
     <>
+      <ToastContainer />
       <Background />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -17,13 +96,18 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            className="space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
             <div>
               <label
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Email address (Test Crendentails : rahul@g.com)
               </label>
               <div className="mt-2">
                 <input
@@ -31,7 +115,9 @@ export default function Login() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -42,19 +128,8 @@ export default function Login() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  Password (Test Crendentails : rahul123)
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold hover:text-indigo-500"
-                    style={{
-                      color: "#007aff",
-                    }}
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -62,21 +137,28 @@ export default function Login() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
             {/* Sign In Google Btn */}
             <div className="flex justify-center items-center">
-              <button class="flex max-w-md items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" style={{
-                    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-              }} onClick={() => loginWithRedirect()}>
+              <button
+                type="button"
+                className="flex max-w-md items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                onClick={handleGoogleSignIn}
+              >
                 <svg
                   class="h-6 w-6 mr-2"
                   xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink ="http://www.w3.org/1999/xlink"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
                   width="800px"
                   height="800px"
                   viewBox="-0.5 0 48 48"
@@ -135,29 +217,10 @@ export default function Login() {
                     </g>{" "}
                   </g>{" "}
                 </svg>
-                  Continue with Google
+                Continue with Google
               </button>
             </div>
 
-            {/* Github login  */}
-            {/* <button
-              type="button"
-              class="py-2 border border-gray-300  shadow-md px-4 max-w-md flex justify-center items-center text-gray-800 focus:ring-gray-500 focus:ring-offset-gray-200 bg-white w-full transition ease-in duration-200 text-center text-base fontshadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg font-medium"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                class="mr-2"
-                viewBox="0 0 1792 1792"
-              >
-                <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path>
-              </svg>
-              <span onClick={() => loginWithRedirect({ screen_hint: 'signin' })}>
-              Sign in with GitHub
-              </span>
-            </button> */}
 
             <div>
               <button
@@ -169,6 +232,16 @@ export default function Login() {
               >
                 Sign in
               </button>
+
+              <div className="mt-4 text-center">
+                <span className="text-sm text-gray-500 dark:text-gray-300">
+                  {" "}
+                  New User 👤 ?{" "}
+                </span>
+                <a href="#" className="text-blue-500 hover:text-blue-600">
+                  <Link to="/register">Register</Link>
+                </a>
+              </div>
             </div>
           </form>
         </div>

@@ -26,7 +26,7 @@ const HeroSection = () => {
                     </button>
                 </form>
             </div>
-            <img src={heroImg} alt="hero" className='md:order-last order-first'/>
+            <img src={heroImg} alt="hero" className='md:order-last order-first animate-pulse'/>
         </div>
     </section>
     </>

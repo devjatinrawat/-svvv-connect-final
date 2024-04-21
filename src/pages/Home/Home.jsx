@@ -1,26 +1,35 @@
-import React from 'react'
-import { HeroSection, Navbar,Companies,Courses, Achievement,Categories,FeedBack,CTA,Footer } from '../../components'
-import Background from '../../components/BackgroundLightPurple';
-
-
-
+import React, { useState } from "react";
+import {
+  HeroSection,
+  Navbar,
+  Companies,
+  Courses,
+  Achievement,
+  Categories,
+  FeedBack,
+  CTA,
+  Footer,
+} from "../../components";
+import Background from "../../components/BackgroundLightPurple";
 
 function Home() {
+
   return (
     <div>
-        <Background/>
-        <Navbar/>
-        <HeroSection/>
-        <Companies/>
-        <Courses/>
-        <Achievement/>
-        <Categories/>
-        <FeedBack/>
-        <CTA/>
-        <Footer/>
-
+      <Background />
+      <Navbar />
+      <HeroSection />
+      <Companies />
+      <Courses />
+      <Achievement />
+      <Categories />
+      <FeedBack />
+      <CTA />
+      <Footer />
     </div>
-  )
+  );
 }
 
 export default Home;
+
+
