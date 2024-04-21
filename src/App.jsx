@@ -18,7 +18,7 @@ const App = () => {
     <div>
         <Music isPlaying={isMusicPlaying} />
         <Routes>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/aboutus" element={<WhoWeAre />}></Route>
           <Route path="/register" element={<Register />}></Route>
