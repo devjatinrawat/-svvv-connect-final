@@ -6,7 +6,7 @@ import { FaPeopleCarry } from 'react-icons/fa'
 
 const Achievement = () => {
   return (
-    <section className='w-full  p-5'>
+    <section className='w-full container-fluid p-5'>
         <div className='md:max-w-[1100px] m-auto grid md:grid-cols-2 max-w-[400px]'>
             <div className='flex flex-col justify-start gap-4'>
                 <h1 className='md:leading-[42px] py-2 text-3xl font-semibold'>

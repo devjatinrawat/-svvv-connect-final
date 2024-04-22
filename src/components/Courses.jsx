@@ -41,7 +41,7 @@ const Courses = () => {
     ]
 }
   return (
-    <section className='w-full  py-24 p-4'>
+    <section className='w-full container-fluid py-24 p-4'>
         <div className='md:max-w-[1100px] m-auto max-w-[400px]'>
             <h1 className='py-4 text-3xl font-bold'>Most Popular <span className='text-[#007aff]'>Courses</span></h1>
             <p className='text-[#6D737A] py-3'>Various versions have evolved over the years, sometimes by accident.</p>

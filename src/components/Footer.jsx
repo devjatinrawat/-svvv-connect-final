@@ -5,7 +5,7 @@ import BackgroundBlueDots from './BackgroundBlueDots'
 
 const Footer = () => {
   return (
-    <section className='w-full  py-24 p-4'>
+    <section className='w-full container-fluid  py-24 p-4'>
             <BackgroundBlueDots/>
         <div className='md:max-w-[1100px] m-auto grid md:grid-cols-5 max-[768px]:md:grid-cols-6 gap-8 max-w-[400px]'>
             <div className='col-span-1'>

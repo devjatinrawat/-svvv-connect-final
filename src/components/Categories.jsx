@@ -5,7 +5,7 @@ import { TiHtml5,TiMicrophone,TiBriefcase,TiBatteryCharge,TiCamera} from 'react-
 
 const Categories = () => {
   return (
-    <section className='w-full bg-[#FFAD25] p-5'>
+    <section className='w-full container-fluid bg-[#FFAD25] p-5'>
         <div className='md:max-w-[1100px] m-auto max-w-[400px]'>
             <h1 className='md:leading-[72px] text-3x1 font-bold'>Our <span className='text-[#208486]'>Popular Categories</span></h1>
             <p className="text-lg text-gray-600">

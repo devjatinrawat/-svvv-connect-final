@@ -1,36 +1,58 @@
-import React from 'react'
-import heroImg from '../assets/heroImg.png'
-import { AiOutlineSearch } from 'react-icons/ai'
-
+import React from "react";
+import heroImg from "../assets/hero_img.svg";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const HeroSection = () => {
   return (
     <>
-
-    <section className='w-full  py-24 p-4'>
-        <div className='md:max-w-[1100px] m-auto grid md:grid-cols-2 max-w-[400px]'>
-            <div className='flex flex-col justify-start gap-4'>
-                <p className='py-2 text-4xl text-[#007aff] font-bold'>START TO SUCCESS</p>
-                <h1 className='md:leading-[42px] py-2 md:text-3xl text-lg font-semibold'>
-                Unlock the gateway to success with our <span className='text-[#007aff] capitalize'> free </span> courses, guided by  <span className='text-[#007aff] capitalize'>industry professionals</span> . Let our expert-led roadmap pave the way to your true success!
-                </h1>
-                <p className='py-2 text-lg text-gray-900'>Various versions have evolved over the years</p>
-                <form className='input-box-shadow flex justify-content-between items-center bg-transparent gap-2'>
-                    <input type="text" className="my-2 w-full px-5 py-3 border border-solid border-neutral-300 bg-transparent bg-clip-padding text-base font-normal text-neutral-700 outline-none placeholder:text-neutral-500" placeholder='search for courses here'/>
-                    <button>
-                        <AiOutlineSearch
-                            size={30}
-                            className='icon'
-                            style={{ color:'#000' }}
-                        />
-                    </button>
-                </form>
-            </div>
-            <img src={heroImg} alt="hero" className='md:order-last order-first animate-pulse'/>
+      <section className="w-full mt-48 container-fluid">
+        <div className="md:max-w-[1100px] m-auto grid gap-4 md:grid-cols-2 max-w-[800px]">
+          <div className="flex flex-col justify-start gap-4">
+            <h1 className="py-2 text-4xl text-[#007aff] font-bold">
+              SVVV Connect Welcomes you{" "}
+            </h1>
+            <h2 className="md:leading-[42px] py-2 md:text-xl text-lg font-semibold">
+              Are you a proud member of the Shri Vaishnav Vidyapeeth
+              Vishwavidyalaya{" "}
+              <span className="text-[#007aff] capitalize"> (SVVV) </span>{" "}
+              Located at Indore{" "}
+              <span className="text-[#007aff] capitalize">
+                {" "}
+                (IT Hub){" "}
+              </span>
+              <br />
+              Welcome to your digital home 🚀
+            </h2>
+            <p className="py-2 text-lg text-gray-900">
+              Various versions have evolved over the years
+            </p>
+            <form className="input-box-shadow flex justify-content-between items-center bg-transparent gap-2">
+              <input
+                type="text"
+                className="my-2 w-full px-5 py-3 border border-solid border-neutral-300 bg-transparent bg-clip-padding text-base font-normal text-neutral-700 outline-none placeholder:text-neutral-500"
+                placeholder="search for courses here"
+              />
+              <button>
+                <AiOutlineSearch
+                  size={30}
+                  className="icon"
+                  style={{ color: "#000" }}
+                />
+              </button>
+            </form>
+          </div>
+          <div className="container flex justify-center items-center">
+            <img
+              src={heroImg}
+              alt="hero"
+              className="animate-pulse"
+              style={{ width: "80%" }}
+            />
+          </div>
         </div>
-    </section>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

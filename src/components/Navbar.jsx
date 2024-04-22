@@ -1,20 +1,44 @@
-import React, { useState } from "react";
-import final_logo from "../assets/final_logo.png";
+import React, { useState , useEffect } from "react";
+import final_logo from "../assets/svvv_logo.png";
 import { Link } from "react-router-dom";
 import Dividers from "../components/Dividers";
 
 
 const Navbar = () => {
-  const [toggle, setToggle] = useState(false);
+  const [isSticky, setSticky] = useState(false);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="w-full h-[96px] shadow-sm">
+    <>
+    <nav className={`bg-gray-900 py-4 container-fluid ${isSticky ? 'fixed top-0 w-full z-10 shadow-md' : ''}`}>
+    <div className="w-full h-[96px] shadow-sm absolute bg-white pb-24 py-12">
       <div className="p-4 md:max-w-[1080px] max-w-[400px] m-auto w-full h-full flex justify-between items-center">
         <img src={final_logo} alt="logo" className="w-24 cursor-pointer" />
+        <span class="py-[2px]" style={{    fontSize: 
+        "1.5rem",
+    color: '#000',
+    fontWeight: '700',
+    fontStyle: 
+    'normal',
+    marginRight: '60px',
+    }}>Svvv Connect</span>
         <div className="flex items-center">
           <ul className="hidden md:flex gap-4 ">
             <li>Home</li>
@@ -48,8 +72,9 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div></div>
     </div>
+          </nav>
+    </>
   );
 };
 
