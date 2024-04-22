@@ -14,7 +14,7 @@ const AboutUs = () => {
                 <h1 className="font-bold text-xl">About Us</h1>
               </div>
               <div className="flex flex-col gap-5">
-                <p className="text-xl font-roboto">SVVV connect is your one-stop destination for academic resources, knowledge sharing, and staying updated with all the exciting events and news happening on our campus. We've created this platform to empower our students, providing an easy and accessible way to enhance your educational journey.</p>
+                <p className="text-lg">SVVV connect is your one-stop destination for academic resources, knowledge sharing, and staying updated with all the exciting events and news happening on our campus. We've created this platform to empower our students, providing an easy and accessible way to enhance your educational journey.</p>
                   <Link to="/aboutus">
                   Click Here
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" color="#17A1FA" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style={{ color: 'rgb(23, 161, 250)' }}>
