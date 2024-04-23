@@ -33,7 +33,7 @@ const GetData = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
-    <div className='post-container'>
+    <div className='post-container container-fluid mt-48'>
       <h1 className='text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl lg:text-5xl p-10 flex justify-center'>My Blog</h1>
       <Posts posts={currentPosts} loading={loading} />
       <Pagination

@@ -40,7 +40,7 @@ const products = [
   
   export default function Resources() {
     return (
-      <div className="bg-white">
+      <div className="bg-white container-fluid mt-48">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <h2 className="text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl lg:text-5xl flex justify-center">Resources</h2>
           <Tags/>

@@ -48,7 +48,7 @@ const Register = () => {
     <>
           <ToastContainer
             />
-      <div className="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="bg-gray-100 flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8 container-fluid mt-48">
         <div className="w-full max-w-md space-y-8">
           <div className="bg-white shadow-md rounded-md p-6">
             <img

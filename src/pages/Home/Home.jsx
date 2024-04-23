@@ -21,7 +21,6 @@ function Home() {
   return (
     <div>
       <Background />
-      <Navbar />
       <HeroSection />
       <AboutUs/>
       <Features/>
